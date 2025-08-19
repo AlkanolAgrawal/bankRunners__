@@ -1,18 +1,31 @@
 import streamlit as st 
 import numpy as np 
+import os
 import tensorflow as tf 
 import pandas as pd
 import pickle
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
 
 
-model = tf.keras.models.load_model('/home/alkanol/Desktop/bankRunners/artifacts/ann_model.h5')
-with open('/home/alkanol/Desktop/bankRunners/artifacts/scaler.pkl', 'rb') as f:
+import os
+import tensorflow as tf
+import pickle
+
+# Model
+model = tf.keras.models.load_model(os.path.join("artifacts", "ann_model.h5"))
+
+# Scaler
+with open(os.path.join("artifacts", "scaler.pkl"), "rb") as f:
     scaler = pickle.load(f)
-with open('/home/alkanol/Desktop/bankRunners/artifacts/OneHotEncoder_Geography.pkl', 'rb') as f:
+
+# OneHotEncoder
+with open(os.path.join("artifacts", "OneHotEncoder_Geography.pkl"), "rb") as f:
     ohe_geo = pickle.load(f)
-with open('/home/alkanol/Desktop/bankRunners/artifacts/Label_Encoder_Gender.pkl', 'rb') as f:
+
+# LabelEncoder
+with open(os.path.join("artifacts", "Label_Encoder_Gender.pkl"), "rb") as f:
     lab_enco_gen = pickle.load(f)
+
 
 
 st.title("Bank Customer Churn Prediction")
